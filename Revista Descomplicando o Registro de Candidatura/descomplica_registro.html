@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrinhos - Descomplicando o Registro de Candidatura</title>
+    
+    <style>
+        /* RESET E CONFIGURAÇÕES BÁSICAS */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            background: #222222; /* Fundo escuro para destacar os quadrinhos brilhantes */
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+        }
+
+        #erro-carregamento {
+            position: absolute;
+            z-index: 9999;
+            background: #ffcc00;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-family: sans-serif;
+        }
+
+        /* CONTAINER MASTER DO ÁLBUM/REVISTA */
+        #album-container { 
+            width: 95vw;
+            height: 90vh;
+            max-width: 1600px; /* Bem largo para comportar duas páginas paisagem abertas */
+            max-height: 900px;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* A PÁGINA FÍSICA */
+        .page { 
+            background-color: #ffffff; /* Fundo branco atrás da imagem */
+            overflow: hidden; 
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.4); /* Sombra para dar o efeito de papel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* AJUSTE DAS IMAGENS DOS QUADRINHOS */
+        .page img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Garante que a imagem inteira apareça sem ser cortada */
+            background-color: #ffffff; /* Preenche sobras de espaço com branco */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="erro-carregamento">
+        Carregando os Quadrinhos...<br><br>
+        <span style="font-size: 12px; font-weight: normal;">Se esta mensagem persistir, verifique a conexão com a internet.</span>
+    </div>
+
+    <div id="album-container">
+        <div id="album">
+            
+            <div class="page">
+                <img src="1.png" alt="Página 1 - Capa">
+            </div>
+
+            <div class="page">
+                <img src="2.png" alt="Página 2">
+            </div>
+
+            <div class="page">
+                <img src="3.png" alt="Página 3">
+            </div>
+
+            <div class="page">
+                <img src="4.png" alt="Página 4">
+            </div>
+
+            <div class="page">
+                <img src="5.png" alt="Página 5">
+            </div>
+
+            <div class="page">
+                <img src="6.png" alt="Página 6">
+            </div>
+
+            <div class="page">
+                <img src="7.png" alt="Página 7">
+            </div>
+
+            <div class="page">
+                <img src="8.png" alt="Página 8">
+            </div>
+
+            <div class="page">
+                <img src="9.png" alt="Página 9 - Fim">
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const PageFlipLib = window.St ? window.St.PageFlip : (window.pageFlip ? window.pageFlip.PageFlip : null);
+
+            if (!PageFlipLib) {
+                document.getElementById('erro-carregamento').innerHTML = "ERRO: O navegador impediu o carregamento dos scripts dinâmicos.<br>Por favor, certifique-se de usar conexões seguras ou desabilitar adblockers locais.";
+                return;
+            }
+
+            document.getElementById('erro-carregamento').style.display = 'none';
+            document.getElementById('album-container').style.display = 'flex';
+
+            const albumElement = document.getElementById('album');
+
+            // Instanciação otimizada para o formato Paisagem (Landscape)
+            const pageFlip = new PageFlipLib(albumElement, {
+                width: 800,       // Largura ajustada para paisagem
+                height: 450,      // Altura ajustada para manter a proporção de um slide/quadrinho
+                size: "stretch",  // Estica de modo proporcional na janela responsiva
+                minWidth: 400,
+                maxWidth: 1000,
+                minHeight: 225,
+                maxHeight: 562,
+                showCover: true,  // A primeira página age como capa isolada
+                drawShadow: true, // Adiciona realismo tridimensional no centro
+                maxShadowOpacity: 0.4,
+                useMouseEvents: true,
+                flippingTime: 800
+            });
+
+            // Carrega as divs com a classe 'page'
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+        });
+    </script>
+</body>
+</html>

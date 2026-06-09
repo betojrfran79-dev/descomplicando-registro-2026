@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Registro de Candidatura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET E CONFIGURAÇÕES BÁSICAS */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Roboto', sans-serif; 
+        }
+        
+        body { 
+            background: #e9ecef; /* Fundo cinza claro atrás da revista */
+            color: #333;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+        }
+
+        #erro-carregamento {
+            position: absolute;
+            z-index: 9999;
+            background: #dc3545;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* CONTAINER MASTER DO ÁLBUM/REVISTA */
+        #album-container { 
+            width: 95vw;
+            height: 90vh;
+            max-width: 1200px;
+            max-height: 900px;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* A PÁGINA FÍSICA */
+        .page { 
+            background-color: #ffffff; 
+            overflow: hidden; 
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15); 
+        }
+
+        /* DESIGN INTERNO DA PÁGINA */
+        .page-design {
+            width: 100%; 
+            height: 100%; 
+            position: relative; 
+            overflow: hidden;
+            display: flex; 
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        /* VARIÁVEIS DE FUNDO E CORES */
+        .bg-capa { 
+            background: #ffffff; /* Fundo branco solicitado */
+            color: #004a8f; /* Texto azul escuro para contrastar com o branco */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .bg-interna { 
+            background: #ffffff; 
+            color: #333;
+        }
+        .bg-contracapa { 
+            background: #004a8f; 
+            color: #ffffff;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* ==================== CAPA ==================== */
+        .titulo-capa { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px; 
+            font-weight: 900; 
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #004a8f; /* Azul institucional */
+        }
+        .subtitulo-capa {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 90%;
+            margin: 0 auto 30px auto;
+            color: #444; /* Cinza escuro para leitura */
+        }
+        .selo-ano {
+            background: #ffcc00;
+            color: #002244;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        /* ==================== CONTEÚDO FAQ ==================== */
+        .header-pagina {
+            border-bottom: 2px solid #004a8f;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header-pagina h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #004a8f;
+            font-size: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-pergunta {
+            font-weight: 700;
+            color: #004a8f;
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .faq-resposta {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #444;
+            text-align: justify;
+        }
+        .faq-resposta ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        .faq-resposta li {
+            margin-bottom: 4px;
+        }
+
+        /* NÚMERO DAS PÁGINAS */
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .destaque-box {
+            background: #f8f9fa;
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="erro-carregamento">
+        Carregando o FAQ Interativo...<br><br>
+        <span style="font-size: 12px; font-weight: normal;">Se esta mensagem persistir, verifique a conexão com a internet ou as permissões do navegador.</span>
+    </div>
+
+    <div id="album-container">
+        <div id="album">
+            
+            <div class="page">
+                <div class="page-design bg-capa">
+                    
+                    <img src="logo Registro de Candidatura 2026.png" alt="Logo Registro de Candidatura" style="max-width: 90%; height: auto; margin-bottom: 15px;">
+                    
+                    <h1 class="titulo-capa">FAQ</h1>
+                    <p class="subtitulo-capa">Descomplicando o processo para os cidadãos. O que você precisa saber de forma simples, direta e objetiva.</p>
+                    <div class="selo-ano">DÚVIDAS FREQUENTES</div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Direitos e Prazos do Eleitor</h2>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-pergunta">1. Até quando posso tirar ou regularizar meu título para votar?</div>
+                        <div class="faq-resposta">Para participar das Eleições 2026, você deve estar com tudo em dia até 6 de maio de 2026. Após essa data, o sistema fecha para que a Justiça Eleitoral organize a lista de votantes.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">2. Quem é obrigado a votar e para quem o voto é opcional?</div>
+                        <div class="faq-resposta">
+                            <ul>
+                                <li><strong>Obrigatório:</strong> Para brasileiros(as) alfabetizados(as) entre 18 e 70 anos.</li>
+                                <li><strong>Opcional (Facultativo):</strong> Para jovens de 16 e 17 anos, idosos acima de 70 anos e pessoas que não sabem ler ou escrever.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">3. Quem pode se candidatar?</div>
+                        <div class="faq-resposta">
+                            Para concorrer, o(a) candidato(a) deve:
+                            <ul>
+                                <li>Ser brasileiro(a) e estar com o título de eleitor regular;</li>
+                                <li>Ser eleitor(a) na região onde vai concorrer e estar filiado(a) a um partido desde 6 de abril de 2026 (6 meses antes da eleição);</li>
+                                <li>Ter a idade mínima exigida por lei para o cargo.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>FAQ - Registro de Candidatura</span>
+                        <span>Pág. 02</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>O Processo de Registro</h2>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">4. O que é o registro de candidatura?</div>
+                        <div class="faq-resposta">O registro de candidatura é o pedido feito à Justiça Eleitoral para que uma pessoa seja reconhecida oficialmente como candidata em uma eleição. Sem o registro autorizado pela Justiça Eleitoral, a pessoa não pode concorrer, mesmo que faça campanha.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">5. Por que o registro de candidaturas é importante para a sociedade?</div>
+                        <div class="faq-resposta">
+                            Porque ele:
+                            <ul>
+                                <li><strong>Garante que apenas candidatos autorizados disputem a eleição:</strong> O registro funciona como um filtro para conferir as condições.</li>
+                                <li><strong>Protege a igualdade:</strong> Garante que todos sigam as mesmas regras e que a disputa seja equilibrada.</li>
+                                <li><strong>Fortalece a confiança:</strong> Quando o candidato é declarado apto, é porque passou por uma fiscalização rigorosa.</li>
+                                <li><strong>Assegura transparência:</strong> O candidato é obrigado a abrir sua lista de bens e mostrar que não tem condenações definitivas.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">6. Quem não pode se candidatar?</div>
+                        <div class="faq-resposta">Não pode se candidatar quem não cumpre alguma condição prevista em lei, está em situação de inelegibilidade, ou não teve o registro aprovado pela Justiça Eleitoral.</div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>Pág. 03</span>
+                        <span>FAQ - Registro de Candidatura</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Partidos e Coligações</h2>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">7. O que são as Federações Partidárias?</div>
+                        <div class="faq-resposta">É quando dois ou mais partidos se unem para agir como se fossem um só. Essa união deve durar pelo menos 4 anos e vale para o país inteiro. Os partidos continuam existindo com seus nomes e números, mas precisam votar e trabalhar juntos no Congresso ou nas Assembleias.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">8. E as coligações eleitorais?</div>
+                        <div class="faq-resposta">É uma união temporária de partidos apenas para disputar uma eleição. Hoje em dia, as coligações só são permitidas para cargos chamados "majoritários" (Prefeito, Governador, Senador e Presidente).</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">9. O que são as Convenções Partidárias?</div>
+                        <div class="faq-resposta">As convenções são reuniões oficiais onde os partidos/federações decidem quem serão seus candidatos e se vão se unir a outros partidos. Em 2026, elas devem obrigatoriamente acontecer entre 20 de julho e 5 de agosto.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">10. Uma pessoa pode se candidatar sozinha?</div>
+                        <div class="faq-resposta">Não. No Brasil, não existe "candidatura avulsa". A Constituição exige que todo candidato esteja filiado a um partido e seja escolhido em convenção partidária.</div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>FAQ - Registro de Candidatura</span>
+                        <span>Pág. 04</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Prazos e Documentação</h2>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">11. Quem pode participar e votar nas convenções?</div>
+                        <div class="faq-resposta">Não é a sociedade em geral, mas sim os(as) filiados(as) aos partidos, seguindo as regras do estatuto de cada agremiação.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">12. Qual é o prazo para registrar uma candidatura?</div>
+                        <div class="faq-resposta">O pedido de registro deve ser apresentado à Justiça Eleitoral até 15 de agosto do ano da eleição. Esse prazo vale para todos os cargos eletivos.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">13. Quem faz o pedido de registro?</div>
+                        <div class="faq-resposta">O pedido é feito pelo Partido Político, Federação ou Coligação. O(A) candidato(a) participa do processo, mas a apresentação oficial é responsabilidade da agremiação.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">14. O que o(a) candidato(a) deve informar?</div>
+                        <div class="faq-resposta">
+                            <ul>
+                                <li>Cópia do documento oficial de identificação.</li>
+                                <li>Lista de Bens.</li>
+                                <li>Certidões Criminais.</li>
+                                <li>Plano de Governo (para Governador e Presidente).</li>
+                                <li>Comprovante de alfabetização.</li>
+                                <li>Comprovante de desincompatibilização (se for o caso).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>Pág. 05</span>
+                        <span>FAQ - Registro de Candidatura</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Análise e Fiscalização</h2>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">15. O que é a desincompatibilização?</div>
+                        <div class="faq-resposta">É o afastamento de um pré-candidato do seu cargo ou emprego público dentro do prazo legal. O objetivo é evitar que alguém use sua posição no governo para ganhar vantagem indevida na eleição.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">16. O que a Justiça Eleitoral analisa no registro?</div>
+                        <div class="faq-resposta">Verifica se o candidato cumpre as exigências constitucionais, se apresentou os documentos corretos e se não está em situação de inelegibilidade.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">17. O que acontece se for "Ficha Suja"?</div>
+                        <div class="faq-resposta">Quem foi condenado por crimes graves ou teve contas públicas rejeitadas (Ficha Suja) fica proibido de concorrer nas eleições por 8 anos, tendo o registro indeferido.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">18. Como o cidadão pode contestar?</div>
+                        <div class="faq-resposta">Qualquer cidadão(ã) em dia com seus direitos políticos pode apresentar uma "Notícia de Inelegibilidade" para informar um fato que impeça o(a) candidato(a) de disputar (ex: condenação criminal omitida).</div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>FAQ - Registro de Candidatura</span>
+                        <span>Pág. 06</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Diversidade e Transparência</h2>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">19. O que é impugnação?</div>
+                        <div class="faq-resposta">Impugnar é questionar judicialmente uma candidatura, por considerá-la irregular. Podem impugnar: Ministério Público Eleitoral, outro candidato, partido ou federação. O cidadão comum apenas noticia (comunica).</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">20. Como a Justiça garante a diversidade?</div>
+                        <div class="faq-resposta">
+                            Os partidos devem respeitar as cotas:
+                            <ul>
+                                <li><strong>Gênero:</strong> Mínimo de 30% de candidaturas de cada gênero. E 5% do fundo deve ir para programas de incentivo a mulheres.</li>
+                                <li><strong>Racial:</strong> 30% dos recursos devem ir para candidatos pretos e pardos.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">21. Onde posso fiscalizar os candidatos?</div>
+                        <div class="faq-resposta">Acesse o portal <strong>DivulgaCandContas</strong> (TSE). Lá você encontra o perfil, bens, atas dos partidos, situação do registro e de onde vem o dinheiro da campanha.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">22. Como acompanhar as decisões?</div>
+                        <div class="faq-resposta">No site da Justiça Eleitoral pelo sistema PJe (Processo Judicial Eletrônico) e assistindo aos julgamentos no canal oficial do TRE no YouTube.</div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>Pág. 07</span>
+                        <span>FAQ - Registro de Candidatura</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-interna">
+                    <div class="header-pagina">
+                        <h2>Glossário</h2>
+                    </div>
+                    
+                    <div class="destaque-box">
+                        <p><strong>Explicando palavras difíceis:</strong></p>
+                        <br>
+                        <p><strong>Inelegibilidade:</strong> Acontece quando uma pessoa é impedida de se candidatar a cargos políticos, em geral, por decisão da Justiça ou previsão da lei.</p>
+                        <br>
+                        <p><strong>Fiscalização Social:</strong> É quando a sociedade observa, cobra e acompanha o que os políticos estão fazendo, para garantir que o dinheiro e o poder sejam usados para o bem de todos.</p>
+                        <br>
+                        <p><strong>Transparência Financeira:</strong> É o dever dos partidos e candidatos de apresentar suas contas de forma aberta. Significa mostrar de onde veio o dinheiro e como foi gasto.</p>
+                        <br>
+                        <p><strong>Filiação Partidária:</strong> É quando alguém escolhe entrar para um partido político, ganhando o direito de ajudar nas decisões do grupo e de ser candidato.</p>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>FAQ - Registro de Candidatura</span>
+                        <span>Pág. 08</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-design bg-contracapa">
+                    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 28px; margin-bottom: 15px;">TRE-RJ</h2>
+                    <p style="font-size: 14px; line-height: 1.6; max-width: 80%; margin: 0 auto;">Eleições 2026 - O seu voto fortalece a democracia.</p>
+                    <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px;">
+                        <a href="https://www.tre-rj.jus.br" style="color: #ffcc00; text-decoration: none; font-weight: bold; font-size: 14px;">www.tre-rj.jus.br</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const PageFlipLib = window.St ? window.St.PageFlip : (window.pageFlip ? window.pageFlip.PageFlip : null);
+
+            if (!PageFlipLib) {
+                document.getElementById('erro-carregamento').innerHTML = "ERRO: O navegador impediu o carregamento dos scripts dinâmicos.<br>Por favor, certifique-se de usar conexões seguras.";
+                return;
+            }
+
+            document.getElementById('erro-carregamento').style.display = 'none';
+            document.getElementById('album-container').style.display = 'flex';
+
+            const albumElement = document.getElementById('album');
+
+            // Instanciação para o formato A4 Retrato
+            const pageFlip = new PageFlipLib(albumElement, {
+                width: 450,       // Largura base (proporção A4)
+                height: 636,      // Altura base (proporção A4)
+                size: "stretch",  // Estica de modo proporcional
+                minWidth: 300,
+                maxWidth: 600,
+                minHeight: 424,
+                maxHeight: 850,
+                showCover: true,  // A primeira e última página agem como capa
+                drawShadow: true,
+                maxShadowOpacity: 0.4,
+                useMouseEvents: true,
+                flippingTime: 800
+            });
+
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+        });
+    </script>
+</body>
+</html>

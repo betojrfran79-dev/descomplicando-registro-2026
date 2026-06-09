@@ -1,0 +1,131 @@
+<style>
+    .tre-audio-player {
+        font-family: 'Roboto', Arial, sans-serif;
+        background: #ffffff;
+        border: 1px solid #e0e4e8;
+        border-radius: 6px;
+        padding: 20px 20px 10px 20px;
+        width: 100%;
+        max-width: 350px; /* Largura máxima do cartão */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; /* Espaço entre um player e outro */
+    }
+    .tre-audio-player .audio-date { font-size: 11px; color: #6c757d; margin-bottom: 8px; }
+    .tre-audio-player .audio-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 10px 0; line-height: 1.3; }
+    .tre-audio-player .audio-desc { font-size: 13px; color: #495057; margin: 0 0 20px 0; line-height: 1.5; }
+    .tre-audio-player .player-controls { display: flex; align-items: center; margin-bottom: 20px; gap: 10px; }
+    .tre-audio-player .play-btn {
+        width: 36px; height: 36px; border-radius: 50%; background-color: #14213d; color: #ffffff;
+        border: none; cursor: pointer; display: flex; justify-content: center; align-items: center;
+        transition: background 0.2s; flex-shrink: 0;
+    }
+    .tre-audio-player .play-btn:hover { background-color: #2a4365; }
+    .tre-audio-player .play-icon {
+        width: 0; height: 0; border-style: solid; border-width: 6px 0 6px 10px;
+        border-color: transparent transparent transparent #ffffff; margin-left: 3px;
+    }
+    .tre-audio-player .pause-icon {
+        width: 10px; height: 12px; border-left: 3px solid #ffffff; border-right: 3px solid #ffffff; display: none;
+    }
+    .tre-audio-player .time-display { font-size: 11px; color: #6c757d; min-width: 35px; text-align: center; }
+    .tre-audio-player .progress-bar {
+        flex-grow: 1; -webkit-appearance: none; appearance: none; height: 4px; background: #e9ecef;
+        border-radius: 2px; outline: none; cursor: pointer;
+    }
+    .tre-audio-player .progress-bar::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none; width: 12px; height: 12px; border-radius: 50%;
+        background: #14213d; cursor: pointer; transition: transform 0.1s;
+    }
+    .tre-audio-player .progress-bar::-webkit-slider-thumb:hover { transform: scale(1.2); }
+    .tre-audio-player .audio-footer {
+        border-top: 1px solid #f1f3f5; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .tre-audio-player .action-btn {
+        background: none; border: none; color: #6c757d; cursor: pointer; padding: 5px; display: flex;
+    }
+    .tre-audio-player .action-btn:hover { color: #14213d; }
+    .tre-audio-player .action-btn svg { width: 18px; height: 18px; fill: currentColor; }
+</style>
+
+<div class="tre-audio-player">
+    <div class="audio-date">17.04.2026 - 17:31</div>
+    <h3 class="audio-title">Calendário Eleitoral : Fechamento do cadastro eleitoral</h3>
+    <p class="audio-desc">Seis de maio é o último dia para o recebimento de solicitações de operações de alistamento, transferência e revisão eleitoral...</p>
+    
+    <div class="player-controls">
+        <button class="play-btn" onclick="toggleTreAudio(this)">
+            <div class="play-icon"></div>
+            <div class="pause-icon"></div>
+        </button>
+        <span class="time-display time-current">00:00</span>
+        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+        <span class="time-display time-duration">00:00</span>
+    </div>
+
+    <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata" 
+           onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+
+    <div class="audio-footer">
+        <button class="action-btn" title="Baixar Áudio">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        </button>
+        <button class="action-btn" title="Compartilhar">
+            <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    function formatTreTime(seconds) {
+        let min = Math.floor(seconds / 60); let sec = Math.floor(seconds % 60);
+        return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
+    function initTreAudio(audioEl) {
+        let container = audioEl.closest('.tre-audio-player');
+        container.querySelector('.time-duration').textContent = formatTreTime(audioEl.duration);
+        container.querySelector('.progress-bar').max = audioEl.duration;
+    }
+    function updateTreAudio(audioEl) {
+        let container = audioEl.closest('.tre-audio-player');
+        container.querySelector('.time-current').textContent = formatTreTime(audioEl.currentTime);
+        container.querySelector('.progress-bar').value = audioEl.currentTime;
+    }
+    function seekTreAudio(rangeEl) {
+        let audioEl = rangeEl.closest('.tre-audio-player').querySelector('audio');
+        audioEl.currentTime = rangeEl.value;
+    }
+    function resetTreAudio(audioEl) {
+        let container = audioEl.closest('.tre-audio-player');
+        container.querySelector('.play-icon').style.display = 'block';
+        container.querySelector('.pause-icon').style.display = 'none';
+        container.querySelector('.progress-bar').value = 0;
+        container.querySelector('.time-current').textContent = "00:00";
+    }
+    function toggleTreAudio(btnEl) {
+        let container = btnEl.closest('.tre-audio-player');
+        let audioEl = container.querySelector('audio');
+        let playIcon = container.querySelector('.play-icon');
+        let pauseIcon = container.querySelector('.pause-icon');
+
+        if (audioEl.paused) {
+            // Pausa outros players que estiverem tocando na página
+            document.querySelectorAll('.tre-audio-player audio').forEach(a => {
+                if(a !== audioEl) {
+                    a.pause();
+                    let otherContainer = a.closest('.tre-audio-player');
+                    otherContainer.querySelector('.play-icon').style.display = 'block';
+                    otherContainer.querySelector('.pause-icon').style.display = 'none';
+                }
+            });
+            audioEl.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        } else {
+            audioEl.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        }
+    }
+</script>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descomplicando o Registro de Candidatura - TRE-RJ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET E CONFIGURAÇÕES GERAIS */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f4f6f9; color: #333; line-height: 1.6; }
+        
+        /* CONTAINER PRINCIPAL */
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        /* HEADER E LOGO */
+        .header { text-align: center; margin-bottom: 40px; }
+        .header img { max-width: 100%; width: 450px; height: auto; }
+
+        /* TEXTO DE INTRODUÇÃO */
+        .intro-text {
+            background: #ffffff; padding: 30px; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;
+            border-left: 5px solid #004a8f; /* Azul institucional TRE */
+        }
+        .intro-text p { margin-bottom: 15px; text-align: justify; color: #444; }
+        .intro-text p:last-child { margin-bottom: 0; }
+
+        /* SEÇÃO DE MATERIAIS (QUADRINHOS E FAQ) */
+        .materiais-grid { display: flex; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
+        
+        .material-card {
+            flex: 1; min-width: 300px; background: #ffffff; border-radius: 10px;
+            overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; color: #333; display: flex; flex-direction: column;
+        }
+        .material-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        
+        /* Imagens dos cartões */
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
+
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; border-top: 1px solid #eee; }
+        .card-title { font-family: 'Montserrat', sans-serif; font-size: 18px; color: #004a8f; margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: #555; margin-bottom: 15px; }
+        .card-btn { background: #004a8f; color: white; border: none; padding: 10px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align: center; width: 100%; transition: background 0.2s; }
+        .material-card:hover .card-btn { background: #ffcc00; color: #002244; }
+
+        /* SEÇÃO DE ÁUDIOS */
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 26px; color: #004a8f; margin-bottom: 25px; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; display: inline-block; }
+        .audios-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        /* CSS DOS PLAYERS */
+        .tre-audio-player { background: #ffffff; border: 1px solid #e0e4e8; border-radius: 6px; padding: 20px 20px 10px 20px; width: calc(50% - 10px); min-width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; flex-grow: 1;}
+        .audio-date { font-size: 11px; color: #6c757d; margin-bottom: 8px; }
+        .audio-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 10px 0; line-height: 1.3; }
+        .audio-desc { font-size: 13px; color: #495057; margin: 0 0 20px 0; line-height: 1.5; text-align: left;}
+        .player-controls { display: flex; align-items: center; margin-bottom: 20px; gap: 10px; }
+        .play-btn { width: 36px; height: 36px; border-radius: 50%; background-color: #14213d; color: #ffffff; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background 0.2s; flex-shrink: 0; }
+        .play-btn:hover { background-color: #2a4365; }
+        .play-icon { width: 0; height: 0; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent #ffffff; margin-left: 3px; }
+        .pause-icon { width: 10px; height: 12px; border-left: 3px solid #ffffff; border-right: 3px solid #ffffff; display: none; }
+        .time-display { font-size: 11px; color: #6c757d; min-width: 35px; text-align: center; }
+        .progress-bar { flex-grow: 1; -webkit-appearance: none; appearance: none; height: 4px; background: #e9ecef; border-radius: 2px; outline: none; cursor: pointer; }
+        .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #14213d; cursor: pointer; transition: transform 0.1s; }
+        .audio-footer { border-top: 1px solid #f1f3f5; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .action-btn { background: none; border: none; color: #6c757d; cursor: pointer; padding: 5px; display: flex; }
+        .action-btn:hover { color: #14213d; }
+        .action-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        
+        @media (max-width: 768px) {
+            .tre-audio-player { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="header">
+            <img src="logo Registro de Candidatura 2026.png" alt="Registro de Candidatura 2026 - TRE-RJ">
+        </header>
+
+        <section class="intro-text">
+            <p>O projeto <strong>"Descomplicando o Registro de Candidatura"</strong> foi idealizado com o objetivo de esclarecer os cidadãos e cidadãs sobre o registro de candidatura nas Eleições 2026 em linguagem clara, direta e simples, reduzindo barreiras técnicas e comunicacionais tradicionalmente associadas ao discurso técnico e jurídico.</p>
+            <p>Os eleitores e eleitoras podem e devem acompanhar os procedimentos relacionados ao registro de candidatura. Nesse sentido, apresentamos as informações públicas relacionadas ao registro de candidatura de modo organizado, compreensível e acessível, permitindo ao cidadão e à cidadã compreender, localizar e interpretar, de forma autônoma, segura e confiável, os requisitos, procedimentos, prazos e consequências jurídicas relacionadas.</p>
+        </section>
+
+        <section class="materiais-grid">
+            
+            <a href="descomplica_registro.html" class="material-card" target="_blank">
+                <img src="Quadrinhos_Descomplicando o Registro de Candidatura.png" alt="Capa Quadrinhos" class="card-img">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Quadrinhos: Descomplicando o Registro</h3>
+                        <p class="card-desc">Histórias em quadrinhos descomplicando o Registro de Candidaturas de forma visual e intuitiva.</p>
+                    </div>
+                    <div class="card-btn">ABRIR QUADRINHOS</div>
+                </div>
+            </a>
+
+            <a href="Faq_Registro.html" class="material-card" target="_blank">
+                <img src="FAQ Descomplicando o Registro.png" alt="Capa FAQ" class="card-img">
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">FAQ: Perguntas Frequentes</h3>
+                        <p class="card-desc">FAQ com perguntas e respostas sobre as regras aplicáveis ao Registro de Candidaturas.</p>
+                    </div>
+                    <div class="card-btn">ABRIR FAQ</div>
+                </div>
+            </a>
+
+        </section>
+
+        <section>
+            <h2 class="section-title">Conteúdo em Áudio</h2>
+            
+            <div class="audios-grid">
+                
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">1 - Pai e Filho</h3>
+                    <p class="audio-desc">Áudio da tirinha sobre os prazos do eleitor e informações sobre o alistamento eleitoral.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="1_Pai e Filho.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="1_Pai e Filho.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">2 - Voz da Floresta na Urna</h3>
+                    <p class="audio-desc">Áudio da tirinha que aborda a importância da representatividade e os requisitos para candidatura.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="2_Voz da Floresta na Urna.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="2_Voz da Floresta na Urna.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">3 - Treino da Cidadania</h3>
+                    <p class="audio-desc">Áudio da tirinha que explica a diferença entre partidos políticos, coligações e federações.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="3_Treino_da_Cidadania.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="3_Treino_da_Cidadania.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">4 - Escolhendo a dedo</h3>
+                    <p class="audio-desc">Áudio da tirinha sobre as condições de inelegibilidade e a lei da Ficha Limpa.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="4_Escolhendo_a_dedo.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="4_Escolhendo_a_dedo.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">5 - Registro na Rede</h3>
+                    <p class="audio-desc">Áudio da tirinha que ensina como o processo de documentação de registro funciona na prática.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="5_Registro_na_Rede.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="5_Registro_na_Rede.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">6 - Transparência e Voto</h3>
+                    <p class="audio-desc">Áudio da tirinha que fala sobre o cumprimento de cotas e o controle social nas eleições.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="6_Transparência e Voto.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="6_Transparência e Voto.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">7 - De olho no Voto</h3>
+                    <p class="audio-desc">Áudio da tirinha que aborda como o eleitor pode ter acesso aos dados oficiais dos candidatos.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="7_De_olho_no_Voto_.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="7_De_olho_no_Voto_.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="tre-audio-player">
+                    <div class="audio-date">Eleições 2026</div>
+                    <h3 class="audio-title">FAQ Descomplicando o Registro</h3>
+                    <p class="audio-desc">Áudio das perguntas e respostas frequentes sobre as regras legais do registro de candidatura.</p>
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleTreAudio(this)"><div class="play-icon"></div><div class="pause-icon"></div></button>
+                        <span class="time-display time-current">00:00</span>
+                        <input type="range" class="progress-bar" value="0" min="0" max="100" step="1" oninput="seekTreAudio(this)">
+                        <span class="time-display time-duration">00:00</span>
+                    </div>
+                    <audio src="FAQ Descomplicando o Registro de Candidatura_Corrigido.mp3" preload="metadata" onloadedmetadata="initTreAudio(this)" ontimeupdate="updateTreAudio(this)" onended="resetTreAudio(this)"></audio>
+                    <div class="audio-footer">
+                        <a href="FAQ Descomplicando o Registro de Candidatura_Corrigido.mp3" download class="action-btn" title="Baixar Áudio"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function formatTreTime(seconds) {
+            let min = Math.floor(seconds / 60); let sec = Math.floor(seconds % 60);
+            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+        function initTreAudio(audioEl) {
+            let container = audioEl.closest('.tre-audio-player');
+            let duration = isNaN(audioEl.duration) ? 0 : audioEl.duration;
+            container.querySelector('.time-duration').textContent = formatTreTime(duration);
+            container.querySelector('.progress-bar').max = duration;
+        }
+        function updateTreAudio(audioEl) {
+            let container = audioEl.closest('.tre-audio-player');
+            container.querySelector('.time-current').textContent = formatTreTime(audioEl.currentTime);
+            container.querySelector('.progress-bar').value = audioEl.currentTime;
+        }
+        function seekTreAudio(rangeEl) {
+            let audioEl = rangeEl.closest('.tre-audio-player').querySelector('audio');
+            audioEl.currentTime = rangeEl.value;
+        }
+        function resetTreAudio(audioEl) {
+            let container = audioEl.closest('.tre-audio-player');
+            container.querySelector('.play-icon').style.display = 'block';
+            container.querySelector('.pause-icon').style.display = 'none';
+            container.querySelector('.progress-bar').value = 0;
+            container.querySelector('.time-current').textContent = "00:00";
+        }
+        function toggleTreAudio(btnEl) {
+            let container = btnEl.closest('.tre-audio-player');
+            let audioEl = container.querySelector('audio');
+            let playIcon = container.querySelector('.play-icon');
+            let pauseIcon = container.querySelector('.pause-icon');
+
+            if (audioEl.paused) {
+                document.querySelectorAll('.tre-audio-player audio').forEach(a => {
+                    if(a !== audioEl) {
+                        a.pause();
+                        let otherContainer = a.closest('.tre-audio-player');
+                        otherContainer.querySelector('.play-icon').style.display = 'block';
+                        otherContainer.querySelector('.pause-icon').style.display = 'none';
+                    }
+                });
+                audioEl.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                audioEl.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
