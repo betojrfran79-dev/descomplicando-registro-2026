@@ -22,7 +22,7 @@
         .intro-text {
             background: #ffffff; padding: 30px; border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;
-            border-left: 5px solid #004a8f; /* Azul institucional TRE */
+            border-left: 5px solid #004a8f;
         }
         .intro-text p { margin-bottom: 15px; text-align: justify; color: #444; }
         .intro-text p:last-child { margin-bottom: 0; }
@@ -31,14 +31,13 @@
         .materiais-grid { display: flex; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
         
         .material-card {
-            flex: 1; min-width: 300px; background: #ffffff; border-radius: 10px;
+            flex: 1; min-width: 280px; background: #ffffff; border-radius: 10px;
             overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none; color: #333; display: flex; flex-direction: column;
         }
         .material-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
         
-        /* Imagens dos cartões */
         .card-img { width: 100%; height: 220px; object-fit: cover; }
 
         .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; border-top: 1px solid #eee; }
@@ -52,7 +51,7 @@
         .audios-grid { display: flex; gap: 20px; flex-wrap: wrap; }
 
         /* CSS DOS PLAYERS */
-        .tre-audio-player { background: #ffffff; border: 1px solid #e0e4e8; border-radius: 6px; padding: 20px 20px 10px 20px; width: calc(50% - 10px); min-width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; flex-grow: 1;}
+        .tre-audio-player { background: #ffffff; border: 1px solid #e0e4e8; border-radius: 6px; padding: 20px 20px 10px 20px; width: calc(50% - 10px); min-width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; flex-grow: 1;}
         .audio-date { font-size: 11px; color: #6c757d; margin-bottom: 8px; }
         .audio-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 10px 0; line-height: 1.3; }
         .audio-desc { font-size: 13px; color: #495057; margin: 0 0 20px 0; line-height: 1.5; text-align: left;}
@@ -69,8 +68,13 @@
         .action-btn:hover { color: #14213d; }
         .action-btn svg { width: 18px; height: 18px; fill: currentColor; }
         
+        /* === RESPONSIVIDADE PARA CELULARES === */
         @media (max-width: 768px) {
-            .tre-audio-player { width: 100%; }
+            .container { padding: 20px 15px; }
+            .header img { width: 90%; }
+            .materiais-grid, .audios-grid { flex-direction: column; gap: 20px; }
+            .tre-audio-player, .material-card { width: 100%; min-width: 100%; }
+            .intro-text { padding: 20px; }
         }
     </style>
 </head>
