@@ -1,3 +1,163 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Quadrinhos - Descomplicando o Registro de Candidatura</title>
+    
+    <style>
+        /* RESET TOTAL PARA EVITAR ROLAGEM */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            background: #222222; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+            height: 100svh; 
+            width: 100vw;
+            overflow: hidden; 
+        }
+
+        #erro-carregamento {
+            position: absolute;
+            z-index: 9999;
+            background: #ffcc00;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-family: sans-serif;
+        }
+
+        /* CONTAINER TRAVADO NA PROPORÇÃO - IMPEDE QUE AS PÁGINAS FIQUEM UMA EMBAIXO DA OUTRA */
+        #album-container { 
+            width: 100%;
+            height: 100%;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #album {
+            margin: 0 auto;
+        }
+
+        /* A PÁGINA COMPORTANDO-SE COMO LIVRO REAIS */
+        .page { 
+            background-color: #ffffff; 
+            overflow: hidden; 
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* GARANTE QUE A IMAGEM PREENCHA A PÁGINA SEM VAZAR */
+        .page img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            background-color: #ffffff; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="erro-carregamento">
+        Carregando os Quadrinhos...<br><br>
+        <span style="font-size: 12px; font-weight: normal;">Se esta mensagem persistir, verifique as conexões.</span>
+    </div>
+
+    <div id="album-container">
+        <div id="album">
+            
+            <div class="page">
+                <img src="1.png" alt="Capa">
+            </div>
+
+            <div class="page">
+                <img src="2.png" alt="Página 2">
+            </div>
+
+            <div class="page">
+                <img src="3.png" alt="Página 3">
+            </div>
+
+            <div class="page">
+                <img src="4.png" alt="Página 4">
+            </div>
+
+            <div class="page">
+                <img src="5.png" alt="Página 5">
+            </div>
+
+            <div class="page">
+                <img src="6.png" alt="Página 6">
+            </div>
+
+            <div class="page">
+                <img src="7.png" alt="Página 7">
+            </div>
+
+            <div class="page">
+                <img src="8.png" alt="Página 8">
+            </div>
+
+            <div class="page">
+                <img src="9.png" alt="Fim">
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const PageFlipLib = window.St ? window.St.PageFlip : (window.pageFlip ? window.pageFlip.PageFlip : null);
+
+            if (!PageFlipLib) {
+                document.getElementById('erro-carregamento').innerHTML = "ERRO: Falha ao carregar a biblioteca de páginas.";
+                return;
+            }
+
+            document.getElementById('erro-carregamento').style.display = 'none';
+            document.getElementById('album-container').style.display = 'flex';
+
+            const albumElement = document.getElementById('album');
+
+            // AJUSTE CRUCIAL: "fit" força a revista a caber na tela do monitor e do celular sem empilhar nada. Proporção A4 Retrato (450x636)
+            const pageFlip = new PageFlipLib(albumElement, {
+                width: 450,       
+                height: 636,      
+                size: "fit",  
+                minWidth: 250,
+                maxWidth: 600,
+                minHeight: 353,
+                maxHeight: 850,
+                showCover: true,  
+                drawShadow: true,
+                maxShadowOpacity: 0.4,
+                useMouseEvents: true,
+                flippingTime: 800
+            });
+
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+        });
+    </script>
+</body>
+=======
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -152,4 +312,5 @@
         });
     </script>
 </body>
+>>>>>>> f6be353b6e4fc2a03652819733d3b2869e8acc65
 </html>
