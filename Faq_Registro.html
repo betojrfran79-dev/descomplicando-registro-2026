@@ -71,8 +71,8 @@
 
         /* VARIÁVEIS DE FUNDO E CORES */
         .bg-capa { 
-            background: #ffffff; /* Fundo branco solicitado */
-            color: #004a8f; /* Texto azul escuro para contrastar com o branco */
+            background: #ffffff; /* Fundo branco */
+            color: #004a8f; /* Texto azul escuro */
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -97,7 +97,7 @@
             line-height: 1.1;
             margin-bottom: 20px;
             text-transform: uppercase;
-            color: #004a8f; /* Azul institucional */
+            color: #004a8f; 
         }
         .subtitulo-capa {
             font-size: 16px;
@@ -105,7 +105,7 @@
             line-height: 1.5;
             max-width: 90%;
             margin: 0 auto 30px auto;
-            color: #444; /* Cinza escuro para leitura */
+            color: #444; 
         }
         .selo-ano {
             background: #ffcc00;
@@ -187,9 +187,7 @@
             
             <div class="page">
                 <div class="page-design bg-capa">
-                    
                     <img src="logo Registro de Candidatura 2026.png" alt="Logo Registro de Candidatura" style="max-width: 90%; height: auto; margin-bottom: 15px;">
-                    
                     <h1 class="titulo-capa">FAQ</h1>
                     <p class="subtitulo-capa">Descomplicando o processo para os cidadãos. O que você precisa saber de forma simples, direta e objetiva.</p>
                     <div class="selo-ano">DÚVIDAS FREQUENTES</div>
@@ -222,7 +220,7 @@
                         <div class="faq-resposta">
                             Para concorrer, o(a) candidato(a) deve:
                             <ul>
-                                <li>Ser brasileiro(a) e estar com o título de eleitor regular;</li>
+                                <li>Ser brasileiro(a) and estar com o título de eleitor regular;</li>
                                 <li>Ser eleitor(a) na região onde vai concorrer e estar filiado(a) a um partido desde 6 de abril de 2026 (6 meses antes da eleição);</li>
                                 <li>Ter a idade mínima exigida por lei para o cargo.</li>
                             </ul>
@@ -262,7 +260,7 @@
 
                     <div class="faq-item">
                         <div class="faq-pergunta">6. Quem não pode se candidatar?</div>
-                        <div class="faq-resposta">Não pode se candidatar quem não cumpre alguma condição prevista em lei, está em situação de inelegibilidade, ou não teve o registro aprovado pela Justiça Eleitoral.</div>
+                        <div class="faq-resposta">Não pode se candidatar quem não cumpre alguma condition prevista em lei, está em situação de inelegibilidade, ou não teve o registro aprovado pela Justiça Eleitoral.</div>
                     </div>
 
                     <div class="page-footer">
@@ -472,16 +470,16 @@
 
             const albumElement = document.getElementById('album');
 
-            // Instanciação para o formato A4 Retrato
+            // CORREÇÃO APLICADA: Configuração alterada para "fit" para não cortar em monitores de 32''
             const pageFlip = new PageFlipLib(albumElement, {
-                width: 450,       // Largura base (proporção A4)
-                height: 636,      // Altura base (proporção A4)
-                size: "stretch",  // Estica de modo proporcional
+                width: 450,       
+                height: 636,      
+                size: "fit",  
                 minWidth: 300,
                 maxWidth: 600,
                 minHeight: 424,
                 maxHeight: 850,
-                showCover: true,  // A primeira e última página agem como capa
+                showCover: true,  
                 drawShadow: true,
                 maxShadowOpacity: 0.4,
                 useMouseEvents: true,
