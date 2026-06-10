@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Quadrinhos (Retrato) - Descomplicando o Registro de Candidatura</title>
+    <title>Quadrinhos - Descomplicando o Registro de Candidatura</title>
     
     <style>
         /* RESET E CONFIGURAÇÕES BÁSICAS */
@@ -18,10 +18,8 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            height: 100vh;
-            height: 100svh; 
+            height: 100vh; 
             width: 100vw;
-            width: 100svw;
             overflow: hidden; 
         }
 
@@ -38,13 +36,11 @@
             font-family: sans-serif;
         }
 
-        /* CONTAINER MASTER AJUSTADO PARA A4 RETRATO */
+        /* CONTAINER MASTER DO ÁLBUM/REVISTA (IGUAL AO FAQ) */
         #album-container { 
             width: 95vw;
-            width: 95svw;
             height: 90vh;
-            height: 90svh;
-            max-width: 1200px; /* Limite de largura para duas páginas verticais lado a lado */
+            max-width: 1200px;
             max-height: 900px;
             display: none; 
             justify-content: center;
@@ -136,7 +132,7 @@
 
             const albumElement = document.getElementById('album');
 
-            // Configuração do motor gráfico ajustada para "fit" e proporções de A4 Retrato (450x636)
+            // Configuração idêntica à do FAQ: Garante o efeito de livro/revista física em formato A4 Retrato
             const pageFlip = new PageFlipLib(albumElement, {
                 width: 450,       
                 height: 636,      
@@ -146,7 +142,7 @@
                 minHeight: 424,
                 maxHeight: 850,
                 showCover: true,  
-                drawShadow: true, 
+                drawShadow: true,
                 maxShadowOpacity: 0.4,
                 useMouseEvents: true,
                 flippingTime: 800
