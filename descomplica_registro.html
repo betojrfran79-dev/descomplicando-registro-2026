@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Quadrinhos - Descomplicando o Registro de Candidatura</title>
     
     <style>
@@ -14,12 +14,14 @@
         }
         
         body { 
-            background: #222222; /* Fundo escuro para destacar os quadrinhos brilhantes */
+            background: #222222; /* Fundo escuro para destacar os quadrinhos */
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            height: 100vh; 
+            height: 100vh;
+            height: 100svh; /* Força o corpo a respeitar a barra de endereço do celular */
             width: 100vw;
+            width: 100svw;
             overflow: hidden; 
         }
 
@@ -36,12 +38,14 @@
             font-family: sans-serif;
         }
 
-        /* CONTAINER MASTER DO ÁLBUM/REVISTA */
+        /* CONTAINER MASTER - Aumentado em 15% para monitores grandes */
         #album-container { 
             width: 95vw;
+            width: 95svw;
             height: 90vh;
-            max-width: 1600px; /* Bem largo para comportar duas páginas paisagem abertas */
-            max-height: 900px;
+            height: 90svh;
+            max-width: 1840px; /* Aumentado de 1600px para 1840px (15% maior) */
+            max-height: 1035px; /* Aumentado de 900px para 1035px (15% maior) */
             display: none; 
             justify-content: center;
             align-items: center;
@@ -49,11 +53,11 @@
 
         /* A PÁGINA FÍSICA */
         .page { 
-            background-color: #ffffff; /* Fundo branco atrás da imagem */
+            background-color: #ffffff; 
             overflow: hidden; 
             width: 100%;
             height: 100%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.4); /* Sombra para dar o efeito de papel */
+            box-shadow: 0 0 15px rgba(0,0,0,0.4); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,8 +67,18 @@
         .page img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Garante que a imagem inteira apareça sem ser cortada */
-            background-color: #ffffff; /* Preenche sobras de espaço com branco */
+            object-fit: contain; /* Garante que a imagem se ajuste sem cortes */
+            background-color: #ffffff; 
+        }
+
+        /* AJUSTE ESPECÍFICO PARA CELULARES DEITADOS */
+        @media (max-height: 500px) and (orientation: landscape) {
+            #album-container {
+                width: 98vw;
+                width: 98svw;
+                height: 96vh;
+                height: 96svh; /* Ocupa o máximo da tela utilizável, sem vazar */
+            }
         }
     </style>
 </head>
@@ -132,23 +146,22 @@
 
             const albumElement = document.getElementById('album');
 
-            // Instanciação otimizada para o formato Paisagem (Landscape)
+            // Configurações base aumentadas em 15% para telas grandes e limites mínimos reduzidos para o celular
             const pageFlip = new PageFlipLib(albumElement, {
-                width: 800,       // Largura ajustada para paisagem
-                height: 450,      // Altura ajustada para manter a proporção de um slide/quadrinho
-                size: "stretch",  // Estica de modo proporcional na janela responsiva
-                minWidth: 400,
-                maxWidth: 1000,
-                minHeight: 225,
-                maxHeight: 562,
-                showCover: true,  // A primeira página age como capa isolada
-                drawShadow: true, // Adiciona realismo tridimensional no centro
+                width: 920,       // Aumentado de 800 para 920 (15% maior)
+                height: 518,      // Aumentado de 450 para 518 (15% maior)
+                size: "stretch",  
+                minWidth: 200,    // Reduzido drasticamente para permitir adaptação em telas pequenas
+                maxWidth: 1150,   // Aumentado de 1000 para 1150 (15% maior)
+                minHeight: 115,   // Reduzido drasticamente para não cortar no celular deitado
+                maxHeight: 646,   // Aumentado de 562 para 646 (15% maior)
+                showCover: true,  
+                drawShadow: true, 
                 maxShadowOpacity: 0.4,
                 useMouseEvents: true,
                 flippingTime: 800
             });
 
-            // Carrega as divs com a classe 'page'
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
         });
     </script>
