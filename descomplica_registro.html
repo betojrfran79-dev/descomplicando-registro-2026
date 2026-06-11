@@ -6,7 +6,7 @@
     <title>Quadrinhos - Descomplicando o Registro de Candidatura</title>
     
     <style>
-        /* RESET TOTAL PARA ELIMINAR QUALQUER ROLAGEM */
+        /* RESET TOTAL PARA EVITAR CONFLITOS DE ROLAGEM */
         * { 
             margin: 0; 
             padding: 0; 
@@ -22,6 +22,7 @@
             height: 100svh; 
             width: 100vw;
             overflow: hidden; 
+            font-family: sans-serif;
         }
 
         #erro-carregamento {
@@ -34,10 +35,9 @@
             font-weight: bold;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            font-family: sans-serif;
         }
 
-        /* CONTAINER MASTER DA REVISTA */
+        /* CONTAINER DA REVISTA */
         #album-container { 
             width: 100%;
             height: 100%;
@@ -47,29 +47,31 @@
             padding: 20px;
         }
 
-        /* TRAVA DE SEGURANÇA REREAL: ESCONDE AS IMAGENS ENQUANTO A BIBLIOTECA NÃO CONSTRÓI O LIVRO */
-        #album:not(.st--loaded) > * { 
-            display: none; 
-        }
-
-        /* ESTILO DA PÁGINA DO LIVRO */
+        /* ESTILO COMPATÍVEL DAS PÁGINAS PARA IMAGENS */
         .page { 
             background-color: #ffffff; 
-            overflow: hidden; 
             width: 100%;
             height: 100%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* GARANTE QUE A IMAGEM PREENCHA A PÁGINA SEM DISTORCER */
+        .page-content {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* IMAGEM RETRATO DIMENSIONADA CORRETAMENTE */
         .page img {
             width: 100%;
             height: 100%;
-            object-fit: contain; 
-            background-color: #ffffff; 
+            object-fit: contain;
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -77,46 +79,64 @@
 
     <div id="erro-carregamento">
         Carregando os Quadrinhos...<br><br>
-        <span style="font-size: 12px; font-weight: normal;">Se esta mensagem persistir, verifique a conexão.</span>
+        <span style="font-size: 12px; font-weight: normal;">Se esta mensagem persistir, verifique as imagens no repositório.</span>
     </div>
 
     <div id="album-container">
         <div id="album">
             
-            <div class="page">
-                <img src="1.png" alt="Capa">
+            <div class="page" data-density="hard">
+                <div class="page-content">
+                    <img src="1.png" alt="Capa">
+                </div>
             </div>
 
             <div class="page">
-                <img src="2.png" alt="Página 2">
+                <div class="page-content">
+                    <img src="2.png" alt="Página 2">
+                </div>
             </div>
 
             <div class="page">
-                <img src="3.png" alt="Página 3">
+                <div class="page-content">
+                    <img src="3.png" alt="Página 3">
+                </div>
             </div>
 
             <div class="page">
-                <img src="4.png" alt="Página 4">
+                <div class="page-content">
+                    <img src="4.png" alt="Página 4">
+                </div>
             </div>
 
             <div class="page">
-                <img src="5.png" alt="Página 5">
+                <div class="page-content">
+                    <img src="5.png" alt="Página 5">
+                </div>
             </div>
 
             <div class="page">
-                <img src="6.png" alt="Página 6">
+                <div class="page-content">
+                    <img src="6.png" alt="Página 6">
+                </div>
             </div>
 
             <div class="page">
-                <img src="7.png" alt="Página 7">
+                <div class="page-content">
+                    <img src="7.png" alt="Página 7">
+                </div>
             </div>
 
             <div class="page">
-                <img src="8.png" alt="Página 8">
+                <div class="page-content">
+                    <img src="8.png" alt="Página 8">
+                </div>
             </div>
 
-            <div class="page">
-                <img src="9.png" alt="Fim">
+            <div class="page" data-density="hard">
+                <div class="page-content">
+                    <img src="9.png" alt="Fim">
+                </div>
             </div>
 
         </div>
@@ -124,20 +144,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('load', function() {
             const PageFlipLib = window.St ? window.St.PageFlip : (window.pageFlip ? window.pageFlip.PageFlip : null);
 
             if (!PageFlipLib) {
-                document.getElementById('erro-carregamento').innerHTML = "ERRO: Falha ao carregar a biblioteca de páginas.";
+                document.getElementById('erro-carregamento').innerHTML = "ERRO: Biblioteca PageFlip não pôde ser carregada.";
                 return;
             }
 
+            // Oculta aviso e mostra o container
             document.getElementById('erro-carregamento').style.display = 'none';
             document.getElementById('album-container').style.display = 'flex';
 
             const albumElement = document.getElementById('album');
 
-            // VALOR CORRIGIDO PARA "stretch" PARA TRABALHAR COM IMAGENS RETRATO A4 (450x636)
+            // Inicialização padrão recomendada para imagens em proporção Retrato (A4)
             const pageFlip = new PageFlipLib(albumElement, {
                 width: 450,       
                 height: 636,      
@@ -153,6 +174,7 @@
                 flippingTime: 800
             });
 
+            // Carrega os elementos que possuem a classe .page
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
         });
     </script>
