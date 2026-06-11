@@ -37,7 +37,7 @@
             font-family: sans-serif;
         }
 
-        /* CONTAINER MASTER IDENTICO AO DA FAQ */
+        /* CONTAINER MASTER DA REVISTA */
         #album-container { 
             width: 100%;
             height: 100%;
@@ -47,7 +47,7 @@
             padding: 20px;
         }
 
-        /* TRAVA DE SEGURANÇA: ESCONDE AS IMAGENS ENQUANTO A BIBLIOTECA NÃO CARREGA */
+        /* TRAVA DE SEGURANÇA REREAL: ESCONDE AS IMAGENS ENQUANTO A BIBLIOTECA NÃO CONSTRÓI O LIVRO */
         #album:not(.st--loaded) > * { 
             display: none; 
         }
@@ -64,7 +64,7 @@
             align-items: center;
         }
 
-        /* IMAGEM EM A4 RETRATO DINÂMICA */
+        /* IMAGEM RETRATO DIMENSIONADA CORRETAMENTE */
         .page img {
             width: 100%;
             height: 100%;
@@ -137,11 +137,11 @@
 
             const albumElement = document.getElementById('album');
 
-            // CONFIGURAÇÃO IDENTICA À DA FAQ (TRAVADO EM PROPORÇÃO FIT / RETRATO)
+            // VALOR CORRIGIDO PARA "stretch" PARA TRABALHAR COM IMAGENS RETRATO A4 (450x636)
             const pageFlip = new PageFlipLib(albumElement, {
                 width: 450,       
                 height: 636,      
-                size: "fit",  
+                size: "stretch",  
                 minWidth: 300,
                 maxWidth: 600,
                 minHeight: 424,
